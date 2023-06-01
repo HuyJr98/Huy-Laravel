@@ -47,9 +47,10 @@ class TableController extends Controller
             $user = Auth::user();
 
             $token = $user->createToken('Token name')->accessToken;
-
+                        
             return response()->json(['token' => $token]);
         }
+       
         return response()->json(['error' => 'Unauthorized'], 401);
 
         // $input = $request->all();
