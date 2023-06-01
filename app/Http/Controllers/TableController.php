@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Table;
-use App\Http\Requests\StoreTableRequest;
-use App\Http\Requests\UpdateTableRequest;
-use GuzzleHttp\Psr7\Request;
+// use App\Http\Requests\StoreTableRequest;
+// use App\Http\Requests\UpdateTableRequest;
+// use GuzzleHttp\Psr7\Request;
 use App\Http\Requests\Register;
 use App\Http\Requests\Login;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller as Controller;
-use Illuminate\Support\Facades\Validator;
+
 
 class TableController extends Controller
 {
@@ -40,39 +39,17 @@ class TableController extends Controller
      */
     public function login(Login $request)
     {
-    
 
-                    // return response()->json(['token' => $input], 200);
-        // $validator = Validator::make($input,[
-        //     'username' => 'required',
-        //     'password' => 'required',
-        // ]);
-        // if($validator->failed()){
-        //     return response() -> json(['error'=> $validator-> errors()->all()], 422);
-
-        // }
         $input = $request->all();
-        echo "1111";
-        echo $input['username'];
-        echo "000";
-        echo $input['password'];
 
-         if (Auth::attempt(['username' => $input['username'], 'password' => $input['password']])) {
-            echo "222";
+        if (Auth::attempt(['username' => $input['username'], 'password' => $input['password']])) {
+
             $user = Auth::user();
-            echo "3333";
+
             $token = $user->createToken('Token name')->accessToken;
-            echo "444";
+
             return response()->json(['token' => $token]);
         }
-
-        
-        // if (Auth::attempt($credentials)) {
-        //     $user = Auth::user();
-        //     $token = $user->createToken('authToken')->accessToken;
-        //     return response()->json(['token' => $token], 200);
-        // }
-        echo "555";
         return response()->json(['error' => 'Unauthorized'], 401);
 
         // $input = $request->all();
