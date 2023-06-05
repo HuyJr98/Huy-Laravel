@@ -24,5 +24,9 @@ Route::middleware('auth:api')->get('/table', function (Request $request) {
 });
 
 Route::get('/table', [TableController::class, 'index']);
+Route::get('/table/{id}', [TableController::class, 'getId']);
 Route::post('/login', [TableController::class, 'login']);
 Route::post('/register', [TableController::class, 'register']);
+Route::post('/create', [TableController::class, 'createTable']);
+Route::put('/update/{id}', [TableController::class, 'updateTable']);
+Route::delete('/delete/{id}', [TableController::class, 'destroy']);
